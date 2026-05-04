@@ -284,6 +284,10 @@ static DEFINE_MUTEX(reboot_mutex);
 /*HS50 code for HS50EU-488 by gaozhengwei at 2020/12/08 start*/
 extern bool hs50_kernel_power_off;
 /*HS50 code for HS50EU-488 by gaozhengwei at 2020/12/08 end*/
+ #ifdef CONFIG_KSU_MANUAL_HOOK
+ extern int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user **arg);
+ #endif
+
 SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 		void __user *, arg)
 {
